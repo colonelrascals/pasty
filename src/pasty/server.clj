@@ -1,5 +1,5 @@
 (ns pasty.server
-  (:require [com.stuartsierr.component :as component]
+  (:require [com.stuartsierra.component :as component]
             [bidi.ring :refer [make-handler]]
             [aleph.http :as http]
             [ring.util.response :as res]
@@ -24,7 +24,7 @@
 (defn paste-handler [store request]
   (res/response (str "You're looking at paste '" (:uuid (:route-params request)) "'"))
   (let [paste (store/get-paste-by-uuid store (:uuid (:route-params request)))]
-    (res/response (view/render-paste paste)))))
+    (res/response (view/render-paste paste))))
 
 (defn handler
   "Get the handler function for our routes."

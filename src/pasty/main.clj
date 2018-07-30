@@ -2,6 +2,6 @@
   (:require [pasty.system :refer [init-system start!]]))
 
 
-(defn -main [&args]
+(defn -main [& args]
   (init-system)
   (start!))

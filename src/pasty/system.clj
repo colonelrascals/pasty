@@ -1,6 +1,6 @@
 (ns pasty.system  (:require [com.stuartsierra.component :as component]
-                            [exopaste.server :as server]
-                            [exopaste.store :as store]
+                            [pasty.server :as server]
+                            [pasty.store :as store]
                             [clojure.tools.logging :refer [error]]))
 (def ^:redef system
   "Holds our system."

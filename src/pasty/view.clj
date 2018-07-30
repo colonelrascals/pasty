@@ -12,7 +12,7 @@
           (include-css "https://sos-de-fra-1.exo.io/highlight.js/9.12.0/default.min.css")
           [:script "hljs.initHighlightingOnLoad();"]]
          [:body
-          [:pre [:code (:content paste)]]])))
+          [:pre [:code (:content paste)]]]))
 
 (defn render-form []
   (xhtml {:lang "en"}
