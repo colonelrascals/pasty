@@ -13,16 +13,36 @@
         uuid (store/add-new-paste store content)]
     (res/redirect (str "/" uuid) :see-other)))
 
-(defn handle-index [])
+(defn handle-index [request]
+  (res/response (view/render-form)))
 
-(defn index-handler [])
+(defn index-handler [store request]
+  (if (= (:request-method request) :post)
+    (handle-post store request)
+    (handle-index request)))
 
-(defn paste-handler [])
+(defn paste-handler [store request]
+  (res/response (str "You're looking at paste '" (:uuid (:route-params request)) "'"))
+  (let [paste (store/get-paste-by-uuid store (:uuid (:route-params request)))]
+    (res/response (view/render-paste paste)))))
 
-(defn handler [])
+(defn handler
+  "Get the handler function for our routes."
+  [store]
+  (make-handler ["/" {"" (partial index-handler store)
+                      [:uuid] (partial paste-handler store)}]))
+(defn app
+  [store]
+  (-> (handler store)
+      wrap-params))
 
-(defn app [])
+(defrecord HttpServer [server]
+  component/Lifecycle
+  (start [this]
+    (assoc this :server (http/start-server (app (:store this)) {:port 8080})))
+  (stop [this]
+    (dissoc this :server)))
 
-(defrecord HttpServer [server])
-
-(defn make-server [])
+(defn make-server
+  []
+  (map->HttpServer {}))

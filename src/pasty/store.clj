@@ -6,3 +6,5 @@
     (swap! (:data store) assoc (keyword uuid) {:content content})
     uuid))
 
+(defn get-paste-by-uuid [store uuid]
+  ((keyword uuid) @(:data store)))
