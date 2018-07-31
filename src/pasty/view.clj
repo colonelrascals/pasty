@@ -1,9 +1,9 @@
 (ns pasty.view
-  (:require [hiccup.page :refer [xhtml include-js include-css]]
+  (:require [hiccup.page :refer [html5 include-js include-css]]
             [hiccup.form :refer [form-to text-area submit-button]]))
 
 (defn render-paste [paste]
-  (xhtml {:lang "en"}
+  (html5 {:lang "en"}
          [:head
           (include-js "https://sos-de-fra-1.exo.io/highlight.js/9.12.0/highlight.min.js")
           (include-js "https://sos-de-fra-1.exo.io/highlight.js/9.12.0/go.min.js")
@@ -15,7 +15,7 @@
           [:pre [:code (:content paste)]]]))
 
 (defn render-form []
-  (xhtml {:lang "en"}
+  (html5 {:lang "en"}
          [:body
           (form-to [:post "/"]
                    (text-area {:cols 80
