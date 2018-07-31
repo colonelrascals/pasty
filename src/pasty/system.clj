@@ -27,4 +27,4 @@
   "Start system"
   []
   (alter-var-root #'system component/start-system)
-  (println "System started"))
+  (println "System started at http://localhost:8080"))
